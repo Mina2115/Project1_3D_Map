@@ -1,5 +1,9 @@
 require(["esri/config",
-         "esri/WebScene",                        "esri/views/SceneView",                "esri/widgets/Legend", "esri/layers/FeatureLayer"], function (esriConfig, WebScene, SceneView,  Legend,FeatureLayer) {
+         "esri/WebScene",
+         "esri/views/SceneView",                
+         "esri/widgets/Legend", 
+         "esri/layers/FeatureLayer"], 
+         function (esriConfig, WebScene, SceneView,  Legend,FeatureLayer) {
 
 esriConfig.apiKey =  "AAPK6221ccc708944717801b1e737e84e229ARkRORCTCsMHPkG82l8m647wlPBVSru5T3Z9cJ0JjaSyfYk-s0mQw-UiHP3Xv8jT"; 
   
