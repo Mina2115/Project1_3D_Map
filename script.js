@@ -1,34 +1,33 @@
-require(["esri/config",
-         "esri/WebScene",
-         "esri/views/SceneView",                
-         "esri/widgets/Legend", 
-         "esri/layers/FeatureLayer"], 
-         function (esriConfig, WebScene, SceneView,  Legend,FeatureLayer) {
+require(["esri/Map",
+         "esri/WebScene",                        "esri/views/SceneView",                "esri/widgets/Legend", "esri/layers/FeatureLayer",
+        "dojo/domReady!"], function ( Map, WebScene, SceneView,  Legend, FeatureLayer) {
 
-esriConfig.apiKey =  "AAPK6221ccc708944717801b1e737e84e229ARkRORCTCsMHPkG82l8m647wlPBVSru5T3Z9cJ0JjaSyfYk-s0mQw-UiHP3Xv8jT"; 
+var map = new Map({
+    basemap: "topo"
+});
   
-const webscene = new WebScene({
-        portalItem: {
-          id: "9221e74e53f54aecbcc33fefea7bc8a8"
-        }
-      }); 
-  
-  const view = new SceneView({
+
+const view = new SceneView({
         container: "viewDiv",
-        map:scene
-      });
-  
-  const legend = new Legend ({
-        view:view
-      });
+        map: map,
+        center: [-92.6,38.8],
+        zoom: 7
 
-      view.ui.add(legend, "top-right");
-  
+});
+
+    const legend = new Legend ({
+        view: view,
+              
+});
+
+  // Add widget to the bottom right corner of the view
+      view.ui.add(legend, "bottom-right");
+
 const countylayer = new FeatureLayer({
   url: "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_2018_County_Boundaries/FeatureServer"
 });
 
- webscene.add(countylayer);
+ map.add(countylayer);
   
 var template = {
     title: "{NAME}"};  
@@ -38,8 +37,10 @@ const collegelayer = new FeatureLayer({
 outFields: ["*"],
 popupTemplate: template});
 
-webscene.add(collegelayer);
- 
-});
+map.add(collegelayer);
+  
+});  
+
+
   
    
